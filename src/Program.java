@@ -1,54 +1,26 @@
+import java.security.SecureRandom;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Program {
 
     public static void main(String[] args) {
-
-        System.out.println(expo(5, 4));
-        System.out.println(expoRec(5, 4));
-        hanoiRec(4, 1, 2, 3);
-    }
-
-    public static int expoRec(int n, int x) {
-        if (x == 0) return 1;
-        if (x % 2 == 1) return expoRec(n, x - 1) * n;
-        else {
-            int b = expoRec(n, x / 2);
-            return b * b;
+        List<MyTreeMap> treeList = new LinkedList<>();
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < 20; i++) {
+            MyTreeMap<Integer, Integer> myTreeMap = new MyTreeMap<>();
+            for (int j = 0; j < random.nextInt(12); j++) {
+                myTreeMap.put(j++, 100 - random.nextInt(201));
+            }
+            treeList.add(myTreeMap);
         }
-    }
 
-    public static int expo(int n, int x) {
-        int result = n;
-        if (x == 0) return 1;
-        if (x == 1) return n;
-        while (x > 1) {
-            result *= n;
-            --x;
+        int count = 0;
+        for (int i = 0; i < treeList.size(); i++) {
+            count += treeList.get(i).isHeightBalanced() ? 1 : 0;
         }
-        return result;
+
+        System.out.println(String.format("Total trees count: " + treeList.size()));
+        System.out.println(String.format("Balanced: " + (count * 100 / treeList.size()) + " percent's"));
     }
-
-    public static void hanoiRec(int n, int from, int to, int additional) {
-        if (n == 0) return;
-        hanoiRec(n - 1, from, additional, to);
-        System.out.println(from + " " + to);
-        hanoiRec(n - 1, additional, to, from);
-    }
-
-    public static void hanoi() {
-        int n = 4;
-        int from = 0;
-        int to = 2;
-        int additional = 1;
-
-        /*
-        сначало облазил пол интернета в поиске помощи, потом почитал я логику нерекурсивного метода вот здесь:
-        http://algolist.manual.ru/maths/combinat/hanoi.php
-        и в итоге понял, что это тяжело для меня пока что. смысл я понимаю полностью, но как реализовать это
-        я просто без понятия..
-        я так понял, что нам нужно будет использоваить стэк, который будем обновлять
-        после каждой итерации(перекладывания кольца).
-         */
-
-    }
-
 }
