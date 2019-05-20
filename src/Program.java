@@ -1,49 +1,26 @@
-import java.util.Comparator;
+import java.security.SecureRandom;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Program {
 
     public static void main(String[] args) {
-
-        /*int n = 10;
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i * 2;
-        }
-
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + ", ");
-        }
-
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 1) {
-                arr[i]++;
+        List<MyTreeMap> treeList = new LinkedList<>();
+        SecureRandom random = new SecureRandom();
+        for (int i = 0; i < 20; i++) {
+            MyTreeMap<Integer, Integer> myTreeMap = new MyTreeMap<>();
+            for (int j = 0; j < random.nextInt(12); j++) {
+                myTreeMap.put(j++, 100 - random.nextInt(201));
             }
+            treeList.add(myTreeMap);
         }
-        System.out.println();
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + ", ");
-        }*/
-        //char
-        MyArrayList<Character> list = new MyArrayList<>();
-        list.add('z');
-        list.add('d');
-        list.add('x');
-        list.add('r');
-        list.add('f');
-        System.out.println(list);
-        System.out.println(list.size());
-        System.out.println(list.indexOf('c'));
-        System.out.println(list.contains('x'));
-        System.out.println(list.remove('b'));
-        System.out.println(list.remove('x'));
-        System.out.println(list);
-        list.add('g');
-        list.add('t');
-        System.out.println(list);
-        //list.selectionSort(new CharacterComparator());
-        list.insertionSort(Character::compareTo);
-        System.out.println(list);
 
+        int count = 0;
+        for (int i = 0; i < treeList.size(); i++) {
+            count += treeList.get(i).isHeightBalanced() ? 1 : 0;
+        }
+
+        System.out.println(String.format("Total trees count: " + treeList.size()));
+        System.out.println(String.format("Balanced: " + (count * 100 / treeList.size()) + " percent's"));
     }
-
 }
