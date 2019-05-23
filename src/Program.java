@@ -1,49 +1,33 @@
-import java.util.Comparator;
-
 public class Program {
 
     public static void main(String[] args) {
 
-        /*int n = 10;
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i * 2;
-        }
+        Graph graph = new Graph(10);
 
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + ", ");
-        }
+        graph.addEdge(0, 1);
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(3, 5);
+        graph.addEdge(2, 4);
+        graph.addEdge(4, 6);
+        graph.addEdge(6, 7);
+        graph.addEdge(5, 7);
+        graph.addEdge(7, 8);
+        graph.addEdge(7, 9);
+        graph.addEdge(8, 9);
 
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 1) {
-                arr[i]++;
-            }
-        }
-        System.out.println();
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + ", ");
-        }*/
-        //char
-        MyArrayList<Character> list = new MyArrayList<>();
-        list.add('z');
-        list.add('d');
-        list.add('x');
-        list.add('r');
-        list.add('f');
-        System.out.println(list);
-        System.out.println(list.size());
-        System.out.println(list.indexOf('c'));
-        System.out.println(list.contains('x'));
-        System.out.println(list.remove('b'));
-        System.out.println(list.remove('x'));
-        System.out.println(list);
-        list.add('g');
-        list.add('t');
-        System.out.println(list);
-        //list.selectionSort(new CharacterComparator());
-        list.insertionSort(Character::compareTo);
-        System.out.println(list);
+        BreadthFirstSearch bfs = new BreadthFirstSearch(graph, 7);
 
+        System.out.println(bfs.hasPathTo(3));
+        System.out.println(bfs.pathTo(3));
+        System.out.println(bfs.distTo(3));
+
+        /*
+        Вроде бы как всё понятно, вроде бы и не сильно сложно, но над каждым движением думаю по 30 минут)
+        ЕСЛИ ВОЗМОЖНО, очень большая просьба уделить время сложным местам в теме про Графы, т.к. заходит гораздо сложнее деревьев.
+        В проге всё работает, в дебаге проверял каждую итерацию, чтобы понять алгоритм работы, но всё равно мало въезжаю.
+        Так же хотелось бы уделить хотя бы минут 5 поиску кротчайшего пути, а то чисто на бумаге, когда себе рисую я понимаю, но
+        в проге я совсем туплю, не могу научиться мыслить как программист(..
+         */
     }
-
 }
